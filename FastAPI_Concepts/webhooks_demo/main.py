@@ -3,6 +3,7 @@ import hmac
 import hashlib
 import os
 from dotenv import load_dotenv
+import httpx
 load_dotenv()  
 
 GITHUB_SECRET = os.environ.get("GITHUB_WEBHOOK_SECRET", "thisIsMyGithubSecret")     
@@ -26,6 +27,18 @@ def verify_signature(secret: str, body: bytes, signature_header: str):
     if not hmac.compare_digest(mac.hexdigest(), signature):
         raise HTTPException(status_code=403, detail="Invalid signature")
 
+
+@app.post("/internal_webhook")
+async def internal_webhook_handler(request: Request):
+    """
+    This is an internal webhook endpoint that can be called from within the application.
+    It simulates receiving a webhook payload and processes it similarly to the external webhook handler.
+    This can be useful for testing or triggering internal events without relying on external services.
+    """
+    body = await request.body()
+    print("Received internal webhook request with body:", body.decode())
+    # Here you can add logic to process the internal webhook payload as needed
+    return {"status": "ok", "message": "Internal webhook received"}
 
 @app.post("/webhook")
 async def webhook_handler(request: Request):
@@ -57,6 +70,12 @@ async def webhook_handler(request: Request):
         "modified": head_commit.get("modified", []),
         "removed": head_commit.get("removed", [])
     }
+
+    # call a webhook from here and see the output in console
+    async with httpx.AsyncClient() as client:
+        response = await client.post("http://localhost:8000/internal_webhook", json={"test": "This is a test from the main webhook handler"})
+        print("Internal webhook response:", response.json())
+
 
     print("🔔 Webhook received!")
     print(data)
