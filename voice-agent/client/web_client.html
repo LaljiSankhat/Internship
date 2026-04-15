@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PersonaPlex Voice Agent</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        #startCall {
+            background: #4CAF50;
+            color: white;
+        }
+        #startCall:hover:not(:disabled) {
+            background: #45a049;
+        }
+        #endCall {
+            background: #f44336;
+            color: white;
+        }
+        #endCall:hover:not(:disabled) {
+            background: #da190b;
+        }
+        #reset {
+            background: #2196F3;
+            color: white;
+        }
+        #reset:hover:not(:disabled) {
+            background: #0b7dda;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .status {
+            text-align: center;
+            margin: 20px 0;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .status.connected {
+            background: #d4edda;
+            color: #155724;
+        }
+        .status.disconnected {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .status.connecting {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .conversation {
+            margin-top: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            background: #f9f9f9;
+        }
+        .message {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .message.user {
+            background: #e3f2fd;
+            text-align: right;
+        }
+        .message.agent {
+            background: #f1f8e9;
+        }
+        .message.system {
+            background: #f0f0f0;
+            text-align: center;
+            font-style: italic;
+            color: #666;
+        }
+        .audio-indicator {
+            width: 100%;
+            height: 60px;
+            background: #f0f0f0;
+            border-radius: 5px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+        }
+        .audio-indicator.active {
+            background: #4CAF50;
+            color: white;
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎙️ PersonaPlex Voice Agent</h1>
+        
+        <div class="controls">
+            <button id="startCall">Start Call</button>
+            <button id="endCall" disabled>End Call</button>
+            <button id="reset">Reset Conversation</button>
+        </div>
+        
+        <div id="status" class="status disconnected">Disconnected</div>
+        
+        <div class="audio-indicator" id="audioIndicator">Microphone: Off</div>
+        
+        <div class="conversation" id="conversation"></div>
+    </div>
+
+    <script>
+        let ws = null;
+        let audioContext = null;
+        let stream = null;
+        let processor = null;
+
+        const startCallBtn = document.getElementById('startCall');
+        const endCallBtn = document.getElementById('endCall');
+        const resetBtn = document.getElementById('reset');
+        const statusDiv = document.getElementById('status');
+        const conversationDiv = document.getElementById('conversation');
+        const audioIndicator = document.getElementById('audioIndicator');
+
+        // Get WebSocket URL
+        const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+        const wsUrl = `${protocol}//${window.location.host}/ws/voice`;
+
+        startCallBtn.addEventListener('click', startCall);
+        endCallBtn.addEventListener('click', endCall);
+        resetBtn.addEventListener('click', resetConversation);
+
+        async function startCall() {
+            try {
+                // Request microphone access
+                stream = await navigator.mediaDevices.getUserMedia({ 
+                    audio: {
+                        sampleRate: 24000,
+                        channelCount: 1,
+                        echoCancellation: true,
+                        noiseSuppression: true
+                    } 
+                });
+                
+                // Create WebSocket connection
+                ws = new WebSocket(wsUrl);
+                
+                ws.onopen = () => {
+                    statusDiv.textContent = 'Connected - Listening...';
+                    statusDiv.className = 'status connected';
+                    startCallBtn.disabled = true;
+                    endCallBtn.disabled = false;
+                    audioIndicator.textContent = 'Microphone: On';
+                    audioIndicator.classList.add('active');
+                    addMessage('system', 'Connected to voice agent. Start speaking!');
+                };
+                
+                ws.onmessage = async (event) => {
+                    if (event.data instanceof Blob) {
+                        // Audio response
+                        const audioBlob = event.data;
+                        playAudio(audioBlob);
+                    } else {
+                        // Text response
+                        try {
+                            const data = JSON.parse(event.data);
+                            if (data.type === 'response') {
+                                addMessage('agent', data.text);
+                            } else if (data.type === 'reset') {
+                                addMessage('system', 'Conversation reset');
+                            }
+                        } catch (e) {
+                            console.error('Error parsing message:', e);
+                        }
+                    }
+                };
+                
+                ws.onerror = (error) => {
+                    console.error('WebSocket error:', error);
+                    statusDiv.textContent = 'Connection Error';
+                    statusDiv.className = 'status disconnected';
+                    audioIndicator.classList.remove('active');
+                    audioIndicator.textContent = 'Microphone: Error';
+                };
+                
+                ws.onclose = () => {
+                    statusDiv.textContent = 'Disconnected';
+                    statusDiv.className = 'status disconnected';
+                    startCallBtn.disabled = false;
+                    endCallBtn.disabled = true;
+                    audioIndicator.classList.remove('active');
+                    audioIndicator.textContent = 'Microphone: Off';
+                    cleanup();
+                };
+                
+                // Start recording audio
+                audioContext = new (window.AudioContext || window.webkitAudioContext)({
+                    sampleRate: 24000
+                });
+                const source = audioContext.createMediaStreamSource(stream);
+                processor = audioContext.createScriptProcessor(4096, 1, 1);
+                
+                processor.onaudioprocess = (e) => {
+                    if (ws && ws.readyState === WebSocket.OPEN) {
+                        const inputData = e.inputBuffer.getChannelData(0);
+                        const float32Array = new Float32Array(inputData);
+                        ws.send(float32Array.buffer);
+                    }
+                };
+                
+                source.connect(processor);
+                processor.connect(audioContext.destination);
+                
+            } catch (error) {
+                console.error('Error starting call:', error);
+                alert('Failed to start call. Please check microphone permissions.');
+                statusDiv.textContent = 'Error: ' + error.message;
+                statusDiv.className = 'status disconnected';
+            }
+        }
+
+        function endCall() {
+            if (ws) {
+                ws.close();
+            }
+            cleanup();
+        }
+
+        function cleanup() {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+                stream = null;
+            }
+            if (processor) {
+                processor.disconnect();
+                processor = null;
+            }
+            if (audioContext) {
+                audioContext.close();
+                audioContext = null;
+            }
+        }
+
+        function resetConversation() {
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({ type: 'reset' }));
+            } else {
+                conversationDiv.innerHTML = '';
+                addMessage('system', 'Conversation reset');
+            }
+        }
+
+        function addMessage(role, text) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${role}`;
+            const roleLabel = role === 'user' ? 'You' : role === 'agent' ? 'Agent' : 'System';
+            messageDiv.textContent = `${roleLabel}: ${text}`;
+            conversationDiv.appendChild(messageDiv);
+            conversationDiv.scrollTop = conversationDiv.scrollHeight;
+        }
+
+        function playAudio(audioBlob) {
+            const audio = new Audio(URL.createObjectURL(audioBlob));
+            audio.play().catch(e => console.error('Error playing audio:', e));
+        }
+
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', () => {
+            endCall();
+        });
+    </script>
+</body>
+</html>

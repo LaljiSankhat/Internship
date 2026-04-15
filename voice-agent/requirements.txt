@@ -1,0 +1,32 @@
+# PersonaPlex dependencies
+# Note: PersonaPlex will install its own torch version, so we don't pin it here
+# Install PersonaPlex first, then install other dependencies
+transformers>=4.40.0,<5.0.0
+accelerate>=0.20.0
+huggingface-hub>=1.3.0,<2.0.0
+
+# Audio processing
+soundfile>=0.12.0
+librosa>=0.10.0
+pyaudio>=0.2.11
+pydub>=0.25.1
+
+# Web server for voice calls
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+websockets>=12.0
+python-multipart>=0.0.6
+
+# Twilio for phone calls (optional)
+twilio>=8.10.0
+
+# Utilities
+python-dotenv>=1.0.0
+pydantic>=2.7.0
+aiofiles>=23.0.0
+numpy>=1.24.0,<2.0.0
+scipy>=1.11.0
+
+# SSL support
+pyopenssl>=23.0.0
+cryptography>=42.0.0

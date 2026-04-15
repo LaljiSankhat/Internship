@@ -1,0 +1,10 @@
+services:
+  zvec-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # This ensures Docker uses the ARM64 emulator
+    platform: linux/arm64
+    volumes:
+      - ./data:/app/zvec_data  # Persistent storage for your vectors
+    restart: no

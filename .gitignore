@@ -1,0 +1,97 @@
+### Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+__init__.py
+
+*.pyc
+*.pyo
+*.pyd
+
+*.pyw
+*.pyz
+
+*.faiss
+*.faiss.index
+*.faiss.index.bin
+*.faiss.index.bin.gz
+*.faiss.index.bin.gz.part
+*.faiss.index.bin.gz.part.1
+*.faiss.index.bin.gz.part.2
+*.faiss.index.bin.gz.part.3
+*.faiss.index.bin.gz.part.4
+*.faiss.index.bin.gz.part.5
+
+glove.*
+
+### Virtual environments
+venv/
+.venv/
+env/
+.env/
+
+*.env
+
+*.pdf
+
+### Distribution / packaging
+build/
+dist/
+*.egg-info/
+*.egg
+
+### Logs and debug
+*.log
+*.tmp
+*.swp
+*.swo
+
+### IDE / Editor
+.vscode/
+.idea/
+*.code-workspace
+
+### OS files
+.DS_Store
+Thumbs.db
+
+### Qdrant / vector DB data (if generated)
+vector-db/**/data/
+
+### Local credentials & secrets
+*.sqlite3
+*.db
+**/credentials.json
+
+
+*.zip
+
+*_data/
+langfuse/
+
+*.wav
+*.mp3
+*.m4a
+*.flac
+*.ogg
+*.opus
+*.wav
+*.mp3
+*.m4a
+*.flac
+*.ogg
+*.opus
+
+
+*.ckpt
+*.pt
+*.pth
+*.h5
+*.hdf5
+*.hdf
+*.hdf4
+*.hdf3
+*.hdf2
+*.hdf1
+*.hdf0

@@ -1,0 +1,132 @@
+models/embedding-gecko-001
+models/gemini-2.5-flash
+models/gemini-2.5-pro
+models/gemini-2.0-flash-exp
+models/gemini-2.0-flash
+models/gemini-2.0-flash-001
+models/gemini-2.0-flash-exp-image-generation
+models/gemini-2.0-flash-lite-001
+models/gemini-2.0-flash-lite
+models/gemini-2.0-flash-lite-preview-02-05
+models/gemini-2.0-flash-lite-preview
+models/gemini-exp-1206
+models/gemini-2.5-flash-preview-tts
+models/gemini-2.5-pro-preview-tts
+models/gemma-3-1b-it
+models/gemma-3-4b-it
+models/gemma-3-12b-it
+models/gemma-3-27b-it
+models/gemma-3n-e4b-it
+models/gemma-3n-e2b-it
+models/gemini-flash-latest
+models/gemini-flash-lite-latest
+models/gemini-pro-latest
+models/gemini-2.5-flash-lite
+models/gemini-2.5-flash-image-preview
+models/gemini-2.5-flash-image
+models/gemini-2.5-flash-preview-09-2025
+models/gemini-2.5-flash-lite-preview-09-2025
+models/gemini-3-pro-preview
+models/gemini-3-flash-preview
+models/gemini-3-pro-image-preview
+models/nano-banana-pro-preview
+models/gemini-robotics-er-1.5-preview
+models/gemini-2.5-computer-use-preview-10-2025
+models/deep-research-pro-preview-12-2025
+models/embedding-001
+models/text-embedding-004
+models/gemini-embedding-exp-03-07
+models/gemini-embedding-exp
+models/gemini-embedding-001
+models/aqa
+models/imagen-4.0-generate-preview-06-06
+models/imagen-4.0-ultra-generate-preview-06-06
+models/imagen-4.0-generate-001
+models/imagen-4.0-ultra-generate-001
+models/imagen-4.0-fast-generate-001
+models/veo-2.0-generate-001
+models/veo-3.0-generate-001
+models/veo-3.0-fast-generate-001
+models/veo-3.1-generate-preview
+models/veo-3.1-fast-generate-preview
+models/gemini-2.5-flash-native-audio-latest
+models/gemini-2.5-flash-native-audio-preview-09-2025
+models/gemini-2.5-flash-native-audio-preview-12-2025
+
+
+
+
+
+
+
+
+
+
+
+# PROMPT = """
+# You are a financial document analyzer.
+# You must return STRICT JSON only.
+# Do not include explanations or extra text.
+# If information is missing, use null.
+# Analyze the attached PDF.
+# Step 1: Determine whether the document is a bank statement.
+# Step 2: If it IS a bank statement, extract details and transactions.
+# Step 3: Using ONLY the extracted transactions, perform financial analysis.
+# Step 4: If it is NOT a bank statement, return empty fields.
+# Return JSON in EXACTLY this format:
+# {
+#   "is_bank_statement": true | false,
+#   "bank_name": string | null,
+#   "account_name": string | null,
+#   "CIF_ID": string | null,
+#   "IFSC": string | null,
+#   "statement_period": {
+#     "from": string | null,
+#     "to": string | null
+#   },
+#   "transactions": [
+#     {
+#       "date": string,
+#       "description": string,
+#       "debit": number | null,
+#       "credit": number | null,
+#       "balance": number | null
+#     }
+#   ],
+#   "analysis": {
+#     "spending_summary": string | null,
+#     "expense_categories": [
+#       {
+#         "category": string,
+#         "total_amount": number,
+#         "transaction_count": number
+#       }
+#     ],
+#     "large_transactions": [
+#       {
+#         "date": string,
+#         "description": string,
+#         "amount": number,
+#         "type": "debit" | "credit"
+#       }
+#     ],
+#     "unusual_transactions": [
+#       {
+#         "date": string,
+#         "description": string,
+#         "reason": string
+#       }
+#     ],
+#     "insights": [
+#       string
+#     ]
+#   }
+# }
+# Rules:
+# - If not a bank statement:
+#   - is_bank_statement=false
+#   - transactions=[]
+#   - analysis=null
+# - Do NOT guess values
+# - Output JSON only
+# """

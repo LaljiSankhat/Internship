@@ -1,0 +1,78 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    container_name: task-1-app  
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app
+    environment:
+      - PYTHONUNBUFFERED=1  
+      - DATABASE_HOST=host.docker.internal
+      - REDIS_HOST=host.docker.internal
+      - DATABASE_PORT=5433
+      - REDIS_PORT=6380
+      - DB_NAME=task1db
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+    restart: unless-stopped
+    extra_hosts:
+    - "host.docker.internal:host-gateway"
+    networks:
+      - task-1-app-network
+    
+  postgres:
+    image: postgres:15-alpine
+    container_name: task-1-postgres
+    environment:
+      POSTGRES_DB: task-1-db
+      POSTGRES_USER: task-1-user
+      POSTGRES_PASSWORD: task-1-password
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    restart: unless-stopped
+    networks:
+      - task-1-postgres-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U task-1-user -d task-1-db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: task-1-redis
+    ports:
+      - "6380:6379"
+    volumes:
+      - redis-data:/data
+    command: ["redis-server", "--appendonly", "yes"]
+    restart: unless-stopped
+    networks:
+      - task-1-redis-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+
+networks:
+  task-1-app-network:
+    driver: bridge
+  task-1-postgres-network:
+    driver: bridge
+  task-1-redis-network:
+    driver: bridge
+
+volumes:
+  postgres-data:
+    driver: local
+  redis-data:
+    driver: local

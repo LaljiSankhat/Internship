@@ -1,0 +1,21 @@
+[project]
+name = "fastmcpdemo"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "LaljiSankhat",email = "sankhatlalji0306@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.10, <4.0"
+dependencies = [
+    "fastmcp (>=3.0.0b1)",
+    "sseclient (>=0.0.27,<0.0.28)",
+    "requests (>=2.32.5,<3.0.0)"
+]
+
+[tool.poetry]
+packages = [{include = "fastmcpdemo", from = "src"}]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

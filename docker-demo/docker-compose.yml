@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: notes-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend/data:/app/data
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+    networks:
+      - my-bac-net
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: notes-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    environment:
+      - REACT_APP_API_URL=http://backend:8000
+    restart: unless-stopped
+    networks:
+      - frontend-network
+      - my-bac-net
+
+networks:
+  frontend-network:
+    driver: bridge
+  my-bac-net:
+    external: true
+  # notes-network:
+  #   driver: bridge
+
+volumes:
+  notes-data:
+    driver: local

@@ -1,0 +1,353 @@
+{
+    "is_bank_statement": true,
+    "bank_name": "RBL BANK",
+    "account_name": "EPIC CONCESIONES 2 PRIVATE LIMITED",
+    "CIF_ID": "203166472",
+    "IFSC": "RATN0000070",
+    "statement_period": {
+      "from": "01/07/2025",
+      "to": "31/07/2025"
+    },
+    "transactions": [
+      {
+        "date": "29/07/2025",
+        "description": "RBL BANK LTD BULK NEFT BRANCH ROUTING CLEAR",
+        "debit": 11079.0,
+        "credit": null,
+        "balance": 3470785.44
+      },
+      {
+        "date": "25/07/2025",
+        "description": "RBL BANK LTD BULK NEFT BRANCH ROUTING CLEAR",
+        "debit": 1215792.66,
+        "credit": null,
+        "balance": 3481864.44
+      },
+      {
+        "date": "25/07/2025",
+        "description": "RBL BANK LTD BULK NEFT BRANCH ROUTING CLEAR",
+        "debit": 63124.05,
+        "credit": null,
+        "balance": 4697657.1
+      },
+      {
+        "date": "24/07/2025",
+        "description": "FD Booking 709026638638",
+        "debit": 3000000.0,
+        "credit": null,
+        "balance": 4760781.15
+      },
+      {
+        "date": "24/07/2025",
+        "description": "FD Booking 709026638601",
+        "debit": 2000000.0,
+        "credit": null,
+        "balance": 7760781.15
+      },
+      {
+        "date": "24/07/2025",
+        "description": "TO For 709025686638",
+        "debit": null,
+        "credit": 6063950.0,
+        "balance": 9760781.15
+      },
+      {
+        "date": "23/07/2025",
+        "description": "NEFT/000454284755/UTIB/DE VADATTA ROY",
+        "debit": 45000.0,
+        "credit": null,
+        "balance": 3696831.15
+      },
+      {
+        "date": "22/07/2025",
+        "description": "FD Booking 709026622062",
+        "debit": 37200000.0,
+        "credit": null,
+        "balance": 3741831.15
+      },
+      {
+        "date": "22/07/2025",
+        "description": "RBL BANK LTD BULK NEFT BRANCH ROUTING CLEAR",
+        "debit": 29981.0,
+        "credit": null,
+        "balance": 40941831.15
+      },
+      {
+        "date": "21/07/2025",
+        "description": "FD Booking 709026608789",
+        "debit": 5000000.0,
+        "credit": null,
+        "balance": 40971812.15
+      },
+      {
+        "date": "21/07/2025",
+        "description": "TO For 709026313632",
+        "debit": null,
+        "credit": 35662813.0,
+        "balance": 45971812.15
+      },
+      {
+        "date": "21/07/2025",
+        "description": "TO For 709025641820",
+        "debit": null,
+        "credit": 8085266.0,
+        "balance": 10308999.15
+      },
+      {
+        "date": "18/07/2025",
+        "description": "NEFT/000453377380/UTIB/AN AND GOPALBHAI VAGHELA",
+        "debit": 50000.0,
+        "credit": null,
+        "balance": 2223733.15
+      },
+      {
+        "date": "18/07/2025",
+        "description": "NEFT/000453376469/RBIS/GS T",
+        "debit": 10800.0,
+        "credit": null,
+        "balance": 2273733.15
+      },
+      {
+        "date": "18/07/2025",
+        "description": "RBL BANK LTD BULK NEFT BRANCH ROUTING CLEAR",
+        "debit": 120741.51,
+        "credit": null,
+        "balance": 2284533.15
+      },
+      {
+        "date": "18/07/2025",
+        "description": "RBL BANK LTD BULK NEFT BRANCH ROUTING CLEAR",
+        "debit": 132291.88,
+        "credit": null,
+        "balance": 2405274.66
+      },
+      {
+        "date": "17/07/2025",
+        "description": "GST SMS Alert Charge 05-2025",
+        "debit": 0.72,
+        "credit": null,
+        "balance": 2537566.54
+      },
+      {
+        "date": "17/07/2025",
+        "description": "SMS Alert Charges 05-2025",
+        "debit": 4.0,
+        "credit": null,
+        "balance": 2537567.26
+      },
+      {
+        "date": "16/07/2025",
+        "description": "NEFT/000452901741/KKBK/SU NIL REDDY GAVINI",
+        "debit": 56840.0,
+        "credit": null,
+        "balance": 2537571.26
+      },
+      {
+        "date": "15/07/2025",
+        "description": "FD Booking 709026554637",
+        "debit": 30000000.0,
+        "credit": null,
+        "balance": 2594411.26
+      },
+      {
+        "date": "15/07/2025",
+        "description": "RBL BANK LTD BULK NEFT BRANCH ROUTING CLEAR",
+        "debit": 117353.0,
+        "credit": null,
+        "balance": 32594411.26
+      },
+      {
+        "date": "15/07/2025",
+        "description": "NEFT/000452639804/UTIB/RA HUL SAINI",
+        "debit": 1847.0,
+        "credit": null,
+        "balance": 32711764.26
+      },
+      {
+        "date": "14/07/2025",
+        "description": "TO For 709025877009",
+        "debit": null,
+        "credit": 30307283.0,
+        "balance": 32713611.26
+      },
+      {
+        "date": "11/07/2025",
+        "description": "RBL BANK LTD BULK NEFT SUNDRY LIABILITY CLE",
+        "debit": 530558.22,
+        "credit": null,
+        "balance": 2406328.26
+      },
+      {
+        "date": "10/07/2025",
+        "description": "RBL BANK LTD BULK NEFT BRANCH ROUTING CLEAR",
+        "debit": 191539.8,
+        "credit": null,
+        "balance": 2936886.48
+      },
+      {
+        "date": "09/07/2025",
+        "description": "RBL BANK LTD BULK NEFT SUNDRY LIABILITY CLE",
+        "debit": 163650.41,
+        "credit": null,
+        "balance": 3128426.28
+      },
+      {
+        "date": "09/07/2025",
+        "description": "UPI/107794324596/UPI/RDHA RMENDRASINH83-1@OKHDFCBAN",
+        "debit": null,
+        "credit": 70000.0,
+        "balance": 3292076.69
+      },
+      {
+        "date": "08/07/2025",
+        "description": "BULK NEFT RETURN BRANCH ROUTING CLEAR",
+        "debit": null,
+        "credit": 50000.0,
+        "balance": 3222076.69
+      },
+      {
+        "date": "08/07/2025",
+        "description": "FD Booking 709026490144",
+        "debit": 50000000.0,
+        "credit": null,
+        "balance": 3172076.69
+      },
+      {
+        "date": "08/07/2025",
+        "description": "RBL BANK LTD BULK NEFT BRANCH ROUTING CLEAR",
+        "debit": 342500.0,
+        "credit": null,
+        "balance": 53172076.69
+      },
+      {
+        "date": "08/07/2025",
+        "description": "RTGS/ICICH25189303621/EPIC GREEN URJA PRIVATE LIMI",
+        "debit": null,
+        "credit": 43310432.0,
+        "balance": 53514576.69
+      },
+      {
+        "date": "07/07/2025",
+        "description": "RBL BANK LTD BULK NEFT BRANCH ROUTING CLEAR",
+        "debit": 211682.0,
+        "credit": null,
+        "balance": 10204144.69
+      },
+      {
+        "date": "07/07/2025",
+        "description": "RTGS/RATNH25188276509/IT D",
+        "debit": 43310432.0,
+        "credit": null,
+        "balance": 10415826.69
+      },
+      {
+        "date": "07/07/2025",
+        "description": "Repayment credit [709026247959]",
+        "debit": null,
+        "credit": 50140547.0,
+        "balance": 53726258.69
+      },
+      {
+        "date": "07/07/2025",
+        "description": "NEFT/000450934116/RBIS/ITD",
+        "debit": 84999.0,
+        "credit": null,
+        "balance": 3585711.69
+      },
+      {
+        "date": "02/07/2025",
+        "description": "NEFT/000450166244/UBIN/MA LINANI VENKATESWALU",
+        "debit": 25000.0,
+        "credit": null,
+        "balance": 3670710.69
+      },
+      {
+        "date": "02/07/2025",
+        "description": "NEFT/000450166094/ICIC/SUJI T KUMAR CHOUDHARY",
+        "debit": 15043.0,
+        "credit": null,
+        "balance": 3695710.69
+      },
+      {
+        "date": "01/07/2025",
+        "description": "RBL BANK LTD BULK NEFT BRANCH ROUTING CLEAR",
+        "debit": 65654.5,
+        "credit": null,
+        "balance": 3710753.69
+      }
+    ],
+    "analysis": {
+      "spending_summary": "The account exhibits high-value transaction activity primarily driven by Fixed Deposit (FD) investments and short-term fund transfers. Total outflows for the month are heavily dominated by FD bookings totaling over ₹12.72 Crores.",
+      "expense_categories": [
+        {
+          "category": "Fixed Deposit Investments",
+          "total_amount": 127200000.0,
+          "transaction_count": 6
+        },
+        {
+          "category": "RTGS Transfers Out",
+          "total_amount": 43310432.0,
+          "transaction_count": 1
+        },
+        {
+          "category": "Bulk Business Payments (NEFT/Bulk)",
+          "total_amount": 3195948.03,
+          "transaction_count": 13
+        },
+        {
+          "category": "Direct NEFT/UPI Payments",
+          "total_amount": 289529.0,
+          "transaction_count": 8
+        },
+        {
+          "category": "Bank Charges",
+          "total_amount": 4.72,
+          "transaction_count": 2
+        }
+      ],
+      "large_transactions": [
+        {
+          "date": "08/07/2025",
+          "description": "FD Booking 709026490144",
+          "amount": 50000000.0,
+          "type": "debit"
+        },
+        {
+          "date": "07/07/2025",
+          "description": "Repayment credit [709026247959]",
+          "amount": 50140547.0,
+          "type": "credit"
+        },
+        {
+          "date": "08/07/2025",
+          "description": "RTGS/ICICH25189303621/EPIC GREEN URJA PRIVATE LIMI",
+          "amount": 43310432.0,
+          "type": "credit"
+        },
+        {
+          "date": "07/07/2025",
+          "description": "RTGS/RATNH25188276509/IT D",
+          "amount": 43310432.0,
+          "type": "debit"
+        },
+        {
+          "date": "22/07/2025",
+          "description": "FD Booking 709026622062",
+          "amount": 37200000.0,
+          "type": "debit"
+        }
+      ],
+      "unusual_transactions": [
+        {
+          "date": "07/07/2025",
+          "description": "RTGS/RATNH25188276509/IT D and RTGS Credit on 08/07/2025",
+          "reason": "Large identical amounts (₹4.33 Cr) appearing as a debit and credit on consecutive days, suggesting a possible reversal, correction, or pass-through transaction."
+        }
+      ],
+      "insights": [
+        "The entity maintains high liquidity and actively manages surplus cash by moving funds in and out of Fixed Deposits.",
+        "A significant portion of the transaction volume is automated or bulk (NEFT/Bulk), typical for a corporate entity managing payroll or vendor payments.",
+        "Inflows are concentrated in large chunks, primarily from FD closures and substantial RTGS credits."
+      ]
+    }
+  }

@@ -1,0 +1,24 @@
+[project]
+name = "faiss-db"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "LaljiSankhat03",email = "laljis@webelight.co.in"}
+]
+readme = "README.md"
+requires-python = ">=3.10,<3.15"
+dependencies = [
+    "faiss-cpu (>=1.13.2,<2.0.0)",
+    "sentence-transformers (>=5.2.0,<6.0.0)",
+    "fastapi (>=0.128.0,<0.129.0)",
+    "uvicorn (>=0.40.0,<0.41.0)",
+    "pydantic (>=2.12.5,<3.0.0)",
+    "numpy (<2.0)"
+]
+
+[tool.poetry]
+packages = [{include = "faiss_db", from = "src"}]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
