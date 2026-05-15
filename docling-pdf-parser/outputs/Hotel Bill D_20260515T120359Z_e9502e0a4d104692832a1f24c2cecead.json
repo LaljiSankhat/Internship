@@ -1,0 +1,11 @@
+{
+  "filename": "Hotel Bill D.JPG",
+  "content": "<!-- image -->\n\nKURNOOL 518 004, A.P\n\nNAME\n\nSCOND NANE\n\nMR RAVI CHANDRA REDDY\n\nROOM NO\n\n411\n\nCOMPANY\n\nGSP CROP SCIENCE LIMITED\n\nADDRESS\n\nGUNTUR 522017\n\nARRIVAL\n\n02/11/2025 08 : 38\n\nDEPARTURE\n\n03/11/2025 09: 11\n\n| DATE                       | DESCRIPI ION          | DEBIT                   | CREDIT   | TOTAL                   |\n|----------------------------|-----------------------|-------------------------|----------|-------------------------|\n| 02/11/25 02/11/25 02/11/25 | Tarilf 4 11 SGST CGST | 3420.00 85 .50 85 50    |          | 3420 00 3505 50 3591.00 |\n|                            | Round off Anount      | 3591 .00 3591.00 0 . 0o |          | 3591 00 3591            |\n|                            | Net Amount            |                         |          | 3591 00                 |\n\n<!-- image -->\n\nSAC CODE: 996311\n\nGSTIN 37AEIPDZ3O3N12B BILL To BE SETTLED BY CAS CHEQHE, PAYABLE CASHIER\n\nGSF CROP SCIENCE LIMITED\n\nGUEST SIGNATURE\n\n<!-- image -->\n\n<!-- image -->\n\nFOLIO\n\n10632\n\nPAX\n\n2\n\nPLAN\n\nCP\n\nINDIAN\n\nRAGHUNATHA REDDY\n\nBILL No\n\n9202\n\n<!-- image -->\n\n## TAXINVOICE\n\nPhone\n\n08518 221111/12/13\n\nCell\n\n77023 77036\n\nEmail\n\ndvrmansion@gmail,corn",
+  "saved_to": "outputs/Hotel Bill D_20260515T120359Z_d0934b11044748c1826d92f23e116c64.json",
+  "options": {
+    "do_ocr": true,
+    "do_table_structure": true,
+    "generate_pic_image": true
+  },
+  "processing_time_seconds": 52.508549
+}

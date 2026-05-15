@@ -1,0 +1,4 @@
+{
+  "filename": "Screenshot from 2026-04-21 10-56-31.png",
+  "content": "Normal view\n\nView changes\n\nDownload PDF\n\nEdit\n\n## Module: Model Performance &amp; optimization\n\nPre Conditions\n\nModel Quantization\n\nDescription\n\nAcceptance criteria\n\n- this whole line is changed me now by\n\nInference Latency Optimization\n\nAccuracy &amp; Precision Tracking\n\nTraining Pipeline Optimization\n\nThe model is meeting latency targets and the training pipeline has been optimized. at end we are getting this error\n\n## Model Quantization\n\n- Average inference latency in staging is around 170 milliseconds; which is below the 200 millisecond target.\n- Precision dropped slightly from 88% to 86%, but it's within an acceptable range.\n\nInference Latency Optimization"
+}
