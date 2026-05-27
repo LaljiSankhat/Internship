@@ -1,4 +1,4 @@
-from fastapi import Depends, FastAPI, HTTPException, Path, Request
+from fastapi import Depends, FastAPI, HTTPException, Path, Request, Security
 from dotenv import load_dotenv
 from fastapi.concurrency import asynccontextmanager
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
@@ -18,6 +18,7 @@ from contextlib import asynccontextmanager
 from dotenv import load_dotenv
 from typing import Annotated
 from services.tanants import TenantService
+from fastapi.security.api_key import APIKeyHeader
 load_dotenv()  # Load environment variables from .env file
 
 
@@ -28,6 +29,8 @@ async def lifespan(app: FastAPI):
     except Exception as e:
         raise
     yield
+
+api_key_header = APIKeyHeader(name="X-API-Key", auto_error=False)
 
 app = FastAPI(lifespan=lifespan)
 
@@ -81,28 +84,32 @@ async def generate_api_key(
 async def access_info_with_headers(
     request: Request,
     tenant_id: UUID = Path(...,title="Tenant ID",description="The ID of the tenant"),
-    x_api_key: HTTPAuthorizationCredentials = Depends(HTTPBearer()),
+    api_key_header: str = Security(api_key_header),
     session: Annotated[AsyncSession, Depends(db_session)] = None,
 ):
     if session is None:
         raise HTTPException(status_code=500, detail="Database session unavailable")
 
-    result = await session.execute(
-        select(ApiKeys).where(
-            ApiKeys.tenant_id == tenant_id,
-            ApiKeys.api == x_api_key.credentials,
+    db_key = await session.scalar(
+        select(ApiKeys.api).where(
+            ApiKeys.tenant_id == tenant_id
         )
     )
-    db_key = result.scalars().first()
+
+    # verify db api key with headers api key 
     if not db_key:
         raise HTTPException(status_code=403, detail="Invalid API key")
-    return {
-        "message": "Accessed info with API headers",
-        "headers": {
-            "id": str(db_key.id),
-            "tenant_id": str(db_key.tenant_id),
+
+    if str(db_key) == api_key_header:
+        return {
+            "message": "Accessed info with API headers",
+            "headers": {
+                "id": str(db_key),
+                "tenant_id": str(db_key),
+            }
         }
-    }
+    else:
+        raise HTTPException(status_code=403, detail="Bhai")
 
 # START THE SERVER WITH: uvicorn main:app --reload
 # if __name__ == "__main__":
