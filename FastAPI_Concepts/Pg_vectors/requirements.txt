@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+sqlalchemy
+asyncpg
+python-dotenv
+pydantic
+pydantic-settings
+sentence-transformers
+pymupdf
+chonkie
+python-multipart
+groq
