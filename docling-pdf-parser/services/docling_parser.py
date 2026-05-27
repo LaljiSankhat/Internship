@@ -212,5 +212,13 @@ class DoclingParserService:
             if pic.image:
                 pic.image.pil_image.save(figures_dir / f"fig_{i+1}.png")
                 print(f"fig_{i+1}.png — caption: {pic.caption_text(doc)[:60]}")
+        
+        import pandas as pd
+        # store tables
+        for i, table in enumerate(doc.tables):
+            df = table.export_to_dataframe()
+            df.to_csv(f"table_{i+1}.csv", index=False)
+            print(f"Table {i+1}: {df.shape[0]} rows x {df.shape[1]} cols")
+
 
         return doc.export_to_markdown()
