@@ -32,15 +32,17 @@ import uvicorn
 from services.milvus_service import MilvusService
 from typing import Annotated
 from fastapi import File, UploadFile
-
-app = FastAPI()
-
+from contextlib import asynccontextmanager
 
 service = MilvusService(host="localhost", port=19530)
 
-@app.on_event("startup")
-async def startup_event():
+@asynccontextmanager
+async def lifespan(app: FastAPI):
     await service.create_collection(collection_name="my_text_embeddings", dimension=384)
+    yield
+
+app = FastAPI(lifespan=lifespan)
+
 
 @app.get("/")
 async def root():
@@ -96,6 +98,6 @@ if __name__ == "__main__":
     uvicorn.run(
         "main:app",
         host="0.0.0.0",
-        port=8000,
+        port=8001,
         reload=True
     )
